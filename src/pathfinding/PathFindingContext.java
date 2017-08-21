@@ -1,4 +1,4 @@
-package org.newdawn.slick.util.pathfinding;
+package pathfinding;
 
 /**
  * The context describing the current path finding state
@@ -26,6 +26,8 @@ public interface PathFindingContext {
 	 * @return The y coordinate of the source location
 	 */
 	public int getSourceY();
+        
+        public int getSourceZ();
 	
 	/**
 	 * Get the distance that has been searched to reach this point

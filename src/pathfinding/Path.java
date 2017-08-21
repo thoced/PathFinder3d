@@ -1,4 +1,4 @@
-package org.newdawn.slick.util.pathfinding;
+package pathfinding;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -63,6 +63,10 @@ public class Path implements Serializable {
 	public int getY(int index) {
 		return getStep(index).y;
 	}
+        
+        public int getZ(int index) {
+		return getStep(index).z;
+	}
 	
 	/**
 	 * Append a step to the path.  
@@ -70,8 +74,8 @@ public class Path implements Serializable {
 	 * @param x The x coordinate of the new step
 	 * @param y The y coordinate of the new step
 	 */
-	public void appendStep(int x, int y) {
-		steps.add(new Step(x,y));
+	public void appendStep(int x, int y, int z) {
+		steps.add(new Step(x,y, z));
 	}
 
 	/**
@@ -80,8 +84,8 @@ public class Path implements Serializable {
 	 * @param x The x coordinate of the new step
 	 * @param y The y coordinate of the new step
 	 */
-	public void prependStep(int x, int y) {
-		steps.add(0, new Step(x, y));
+	public void prependStep(int x, int y, int z) {
+		steps.add(0, new Step(x, y, z));
 	}
 	
 	/**
@@ -91,8 +95,8 @@ public class Path implements Serializable {
 	 * @param y The y coordinate of the step to check for
 	 * @return True if the path contains the given step
 	 */
-	public boolean contains(int x, int y) {
-		return steps.contains(new Step(x,y));
+	public boolean contains(int x, int y, int z) {
+		return steps.contains(new Step(x,y,z));
 	}
 	
 	/**
@@ -105,6 +109,8 @@ public class Path implements Serializable {
 		private int x;
 		/** The y coordinate at the given step */
 		private int y;
+                
+                private int z;
 		
 		/**
 		 * Create a new step
@@ -112,9 +118,10 @@ public class Path implements Serializable {
 		 * @param x The x coordinate of the new step
 		 * @param y The y coordinate of the new step
 		 */
-		public Step(int x, int y) {
+		public Step(int x, int y, int z) {
 			this.x = x;
 			this.y = y;
+                        this.z = z;
 		}
 		
 		/**
@@ -134,12 +141,16 @@ public class Path implements Serializable {
 		public int getY() {
 			return y;
 		}
+                
+                public int getZ() {
+			return z;
+		}
 		
 		/**
 		 * @see Object#hashCode()
 		 */
 		public int hashCode() {
-			return x*y;
+			return x*y*z;
 		}
 
 		/**
@@ -149,7 +160,7 @@ public class Path implements Serializable {
 			if (other instanceof Step) {
 				Step o = (Step) other;
 				
-				return (o.x == x) && (o.y == y);
+				return (o.x == x) && (o.y == y) && (o.z == z);
 			}
 			
 			return false;

@@ -1,4 +1,4 @@
-package org.newdawn.slick.util.pathfinding;
+package pathfinding;
 
 /**
  * The description for the data we're pathfinding over. This provides the contract
@@ -8,6 +8,9 @@ package org.newdawn.slick.util.pathfinding;
  * @author Kevin Glass
  */
 public interface TileBasedMap {
+    
+        public int getDepthInTiles();
+    
 	/**
 	 * Get the width of the tile map. The slightly odd name is used
 	 * to distiguish this method from commonly used names in game maps.
@@ -31,7 +34,7 @@ public interface TileBasedMap {
 	 * @param x The x coordinate of the tile that was visited
 	 * @param y The y coordinate of the tile that was visited
 	 */
-	public void pathFinderVisited(int x, int y);
+	public void pathFinderVisited(int x, int y,int z);
 	
 	/**
 	 * Check if the given location is blocked, i.e. blocks movement of 
@@ -42,7 +45,7 @@ public interface TileBasedMap {
 	 * @param ty The y coordinate of the tile we're moving to
 	 * @return True if the location is blocked
 	 */
-	public boolean blocked(PathFindingContext context, int tx, int ty);
+	public boolean blocked(PathFindingContext context, int tx, int ty,int tz);
 	
 	/**
 	 * Get the cost of moving through the given tile. This can be used to 
@@ -54,5 +57,5 @@ public interface TileBasedMap {
 	 * @param ty The y coordinate of the tile we're moving to
 	 * @return The relative cost of moving across the given tile
 	 */
-	public float getCost(PathFindingContext context, int tx, int ty);
+	public float getCost(PathFindingContext context, int tx, int ty,int tz);
 }

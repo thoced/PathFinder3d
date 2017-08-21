@@ -1,6 +1,8 @@
+package javaapplication1;
 
-import org.newdawn.slick.util.pathfinding.PathFindingContext;
-import org.newdawn.slick.util.pathfinding.TileBasedMap;
+
+import pathfinding.PathFindingContext;
+import pathfinding.TileBasedMap;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,6 +20,8 @@ public class World implements TileBasedMap{
 
     public World(){
         grid3d = new short[256 * 256 * 256];
+        
+        
     }
     
     
@@ -33,18 +37,23 @@ public class World implements TileBasedMap{
     }
 
     @Override
-    public void pathFinderVisited(int x, int y) {
+    public void pathFinderVisited(int x, int y, int z) {
        
     }
 
     @Override
-    public boolean blocked(PathFindingContext context, int tx, int ty) {
+    public boolean blocked(PathFindingContext context, int tx, int ty, int tz) {
        return false;
     }
 
     @Override
-    public float getCost(PathFindingContext context, int tx, int ty) {
+    public float getCost(PathFindingContext context, int tx, int ty, int tz) {
        return 0;
+    }
+
+    @Override
+    public int getDepthInTiles() {
+        return 256;
     }
     
 }

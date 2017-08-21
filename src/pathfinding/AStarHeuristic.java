@@ -1,4 +1,4 @@
-package org.newdawn.slick.util.pathfinding;
+package pathfinding;
 
 /**
  * The description of a class providing a cost for a given tile based
@@ -23,5 +23,5 @@ public interface AStarHeuristic {
 	 * @param ty Teh y coordinate of the target location
 	 * @return The cost associated with the given tile
 	 */
-	public float getCost(TileBasedMap map, Mover mover, int x, int y, int tx, int ty);
+	public float getCost(TileBasedMap map, Mover mover, int x, int y, int z, int tx, int ty, int tz);
 }

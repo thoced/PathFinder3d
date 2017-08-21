@@ -1,8 +1,8 @@
-package org.newdawn.slick.util.pathfinding.heuristics;
+package pathfinding.heuristics;
 
-import org.newdawn.slick.util.pathfinding.AStarHeuristic;
-import org.newdawn.slick.util.pathfinding.Mover;
-import org.newdawn.slick.util.pathfinding.TileBasedMap;
+import pathfinding.AStarHeuristic;
+import pathfinding.Mover;
+import pathfinding.TileBasedMap;
 
 /**
  * A heuristic that uses the tile that is closest to the target
@@ -14,11 +14,12 @@ public class ClosestHeuristic implements AStarHeuristic {
 	/**
 	 * @see AStarHeuristic#getCost(TileBasedMap, Mover, int, int, int, int)
 	 */
-	public float getCost(TileBasedMap map, Mover mover, int x, int y, int tx, int ty) {		
+	public float getCost(TileBasedMap map, Mover mover, int x, int y, int z,int tx, int ty, int tz) {		
 		float dx = tx - x;
 		float dy = ty - y;
+                float dz = tz - z;
 		
-		float result = (float) (Math.sqrt((dx*dx)+(dy*dy)));
+		float result = (float) (Math.sqrt((dx*dx)+(dy*dy)+(dz*dz)));
 		
 		return result;
 	}
