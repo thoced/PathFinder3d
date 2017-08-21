@@ -7,6 +7,8 @@ package javaapplication1;
 
 import pathfinding.AStarPathFinder;
 import pathfinding.Mover;
+import pathfinding.Path;
+import pathfinding.Path.Step;
 import pathfinding.PathFinder;
 
 /**
@@ -28,7 +30,20 @@ public class JavaApplication1 {
         
         Agent agent = new Agent();
         
-        finder.findPath(agent, 0, 0, 0, 100, 100, 100);
+        Path path = finder.findPath(agent, 0, 0, 1, 100, 0, 1);
+        
+        if(path != null)
+            System.out.println("Longueur: " + path.getLength());
+        else {
+            System.out.println("Aucun chemin trouvé");
+            return;
+        }
+        
+        for(int i=0;i<path.getLength();i++){
+            Step step = path.getStep(i);
+            System.out.println("x:" +  step.getX() + " y: " + step.getY() + "z: " + step.getZ());
+            
+        }
     }
     
 }

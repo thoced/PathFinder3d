@@ -16,16 +16,28 @@ import pathfinding.TileBasedMap;
  */
 public class World implements TileBasedMap{
 
-    private short[] grid3d;
+    private short[][][] grid3d;
 
     public World(){
-        grid3d = new short[256 * 256 * 256];
+        grid3d = new short[256][256][256];
         
+        for(int x=0;x<256;x++){
+            for(int y=0;y<256;y++){
+                for(int z=0;z<1;z++){
+                    grid3d[x][y][z] = 1;
+                }
+            }
+        }
+        
+        for(int z=0;z<3;z++){
+            grid3d[50][0][z] = 1;
+        }
+        
+        
+           
         
     }
-    
-    
-    
+
     @Override
     public int getWidthInTiles() {
        return 256;
@@ -43,12 +55,17 @@ public class World implements TileBasedMap{
 
     @Override
     public boolean blocked(PathFindingContext context, int tx, int ty, int tz) {
-       return false;
+            if(grid3d[tx][ty][tz] == 1)
+                return true;
+            if(grid3d[tx][ty][tz-1] == 0)
+                return true;
+            
+                return false;
     }
 
     @Override
     public float getCost(PathFindingContext context, int tx, int ty, int tz) {
-       return 0;
+       return 1f;
     }
 
     @Override
